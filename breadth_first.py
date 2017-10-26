@@ -56,11 +56,7 @@ def find_node(node, value):
     seen = set([])
     to_check = []
 
-    if node.data == value:
-        return node
-    else:
-        seen.add(node)
-        to_check.extend(node.children)
+    to_check.append(node)
 
     while to_check:
 
@@ -78,4 +74,3 @@ def find_node(node, value):
             to_check.remove(current)
 
     return "Node not found."
-
