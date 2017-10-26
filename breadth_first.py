@@ -4,12 +4,55 @@ class GraphNode(object):
         self.children = children or []
 
 
-def find(node, value):
-    """Given a node in a directed graph that may contain cycles and a value,
+def find_node(node, value):
+    """Given a node in a directed graph (that may contain cycles) and a value,
     finds the node in the graph with the corresponding value via breadth-first
     search and returns it.
 
+
+    Without cycles:
+
+    >>> node_a = GraphNode("a")
+    >>> node_b = GraphNode("b")
+    >>> node_c = GraphNode("c")
+    >>> node_d = GraphNode("d")
+    >>> node_f = GraphNode("f")
+    >>> node_e = GraphNode("e")
+    >>> node_g = GraphNode("g")
+
+    >>> node_a.children = [node_b, node_c]
+    >>> node_b.children = [node_d, node_e, node_f]
+    >>> node_c.children = [node_g]
+
+    >>> (find_node(node_a, "g")).data == "g"
+    True
+
+    >>> find_node(node_a, "nope")
+    'Node not found.'
+
+
+    With cycles:
+
+    >>> node_a = GraphNode("a")
+    >>> node_b = GraphNode("b")
+    >>> node_c = GraphNode("c")
+    >>> node_d = GraphNode("d")
+    >>> node_f = GraphNode("f")
+    >>> node_e = GraphNode("e")
+    >>> node_g = GraphNode("g")
+
+    >>> node_a.children = [node_b, node_c, node_a]
+    >>> node_b.children = [node_d, node_e, node_f, node_a]
+    >>> node_c.children = [node_g]
+
+    >>> (find_node(node_a, "g")).data == "g"
+    True
+
+    >>> find_node(node_a, "nope")
+    'Node not found.'
+
     """
+
     seen = set([])
     to_check = []
 
@@ -36,44 +79,3 @@ def find(node, value):
 
     return "Node not found."
 
-"""For creating a test graph:
-
-Without cycles:
-
-node_a = GraphNode("a")
-node_b = Graphnode("b")
-node_c = Graphnode("c")
-node_d = GraphNode("d")
-node_f = GraphNode("f")
-node_e = GraphNode("e")
-node_g = GraphNode("g")
-
-node_a.children = [node_b, node_c]
-node_b.children = [node_d, node_e, node_f]
-node_c.children = [node_g]
-
-Test cases:
-
-find(node_a, "g")
-find(node_a, "nope")
-
-With cycles:
-
-node_a = GraphNode("a")
-node_b = Graphnode("b")
-node_c = Graphnode("c")
-node_d = GraphNode("d")
-node_f = GraphNode("f")
-node_e = GraphNode("e")
-node_g = GraphNode("g")
-
-node_a.children = [node_b, node_c, node_a]
-node_b.children = [node_d, node_e, node_f, node_a]
-node_c.children = [node_g]
-
-Test cases:
-
-find(graph, "g")
-find(graph, "nope")
-
-"""
