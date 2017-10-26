@@ -6,8 +6,8 @@ class GraphNode(object):
 
 def find_node(node, value):
     """Given a node in a directed graph (that may contain cycles) and a value,
-    finds the node in the graph with the corresponding value via breadth-first
-    search and returns it.
+    finds the node with the corresponding value via breadth-first search and
+    returns it.
 
 
     Without cycles:
@@ -16,8 +16,8 @@ def find_node(node, value):
     >>> node_b = GraphNode("b")
     >>> node_c = GraphNode("c")
     >>> node_d = GraphNode("d")
-    >>> node_f = GraphNode("f")
     >>> node_e = GraphNode("e")
+    >>> node_f = GraphNode("f")
     >>> node_g = GraphNode("g")
 
     >>> node_a.children = [node_b, node_c]
@@ -37,8 +37,8 @@ def find_node(node, value):
     >>> node_b = GraphNode("b")
     >>> node_c = GraphNode("c")
     >>> node_d = GraphNode("d")
-    >>> node_f = GraphNode("f")
     >>> node_e = GraphNode("e")
+    >>> node_f = GraphNode("f")
     >>> node_g = GraphNode("g")
 
     >>> node_a.children = [node_b, node_c, node_a]
