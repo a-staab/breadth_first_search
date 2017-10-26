@@ -3,19 +3,6 @@ class GraphNode(object):
         self.data = data
         self.children = children or []
 
-    def add_new_node(self, parent, value):
-        """Given the parent node and value of a new node, creates a new node and
-        adds it to the graph."""
-
-        self = GraphNode(value)
-        parent.children.append(self)
-
-    def make_cycle(self, parent, node):
-        """Create an edge connecting node to parent."""
-
-        parent.children.append(node)
-
-
 def find(node, value):
     """Given a node in a directed graph that may contain cycles and a value,
     finds the node in the graph with the corresponding value via breadth-first
@@ -52,19 +39,18 @@ def find(node, value):
 
 Without cycles:
 
-graph = GraphNode("a")
-graph.add_new_node(graph, "b")
-graph.add_new_node(graph, "c")
-graph.children[0].add_new_node(graph.children[0], "d")
-graph.children[0].add_new_node(graph.children[0], "e")
-graph.children[0].add_new_node(graph.children[0], "f")
-graph.children[1].add_new_node(graph.children[1], "c")
-graph.children[1].children[0].add_new_node(graph.children[1].children[0], "g")
+node_a = GraphNode("a")
+node_b = Graphnode("b")
+node_c = Graphnode("c")
+node_d = GraphNode("d")
+node_f = GraphNode("f")
+node_e = GraphNode("e")
+node_g = GraphNode("g")
 
 Test cases:
 
-find(graph, "g")
-find(graph, "moon")
+find(node_a, "g")
+find(node_a, "nope")
 
 With a cycle:
 
