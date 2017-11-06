@@ -53,7 +53,7 @@ def find_node(node, value):
 
     """
 
-    seen = set([])
+    seen = set()
     to_check = []
 
     to_check.append(node)
