@@ -1,3 +1,6 @@
+from collections import deque
+
+
 class GraphNode(object):
     def __init__(self, data, children=None):
         self.data = data
@@ -54,23 +57,23 @@ def find_node(node, value):
     """
 
     seen = set()
-    to_check = []
+    queue = deque()
 
-    to_check.append(node)
+    queue.append(node)
 
-    while to_check:
+    while queue:
 
-        current = to_check[0]
+        current = queue.popleft()
 
         if current not in seen:
             if current.data == value:
                 return current
             else:
                 seen.add(current)
-                to_check.pop(0)
-                to_check.extend(current.children)
-
-        else:
-            to_check.remove(current)
+                queue.extend(current.children)
 
     return "Node not found."
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
